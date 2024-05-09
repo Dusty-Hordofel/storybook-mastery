@@ -164,4 +164,8 @@ export const Default: Story = {
 $ yarn add clsx tailwind-merge class-variance-authority
 ```
 
-- add [](src/components/Button/index.tsx)
+- add [Button](src/components/Button/index.tsx)
+
+### 7. Implement Text component
+
+- add [TextComponent](src/components/Text/index.tsx)

@@ -29,7 +29,7 @@ $ yarn dev
 }
 ```
 
-### 3. configure tsconfig, eslint,
+### 3. configure tsconfig, eslint,Tailwindcss
 
 - define `paths` to avoid absolute paths.
 - update `eslint` file to shutdown some roles
@@ -59,4 +59,11 @@ module.exports = {
 };
 ```
 
-- scofold our library structure.
+- scafold our library structure.
+- install [tailwindcss](http://localhost:5173/)
+
+### 4. Storybook
+
+```ts
+
+```

@@ -64,6 +64,96 @@ module.exports = {
 
 ### 4. Storybook
 
-```ts
+```bash
+$ npx storybook init
+```
 
+### 5. First Story
+
+```bash
+$ yarn add -D vite-tsconfig-paths
+```
+
+- [main](.storybook/main.ts)
+
+```tsx
+import type { StorybookConfig } from "@storybook/react-vite";
+import path from "path";
+import tsconfigPaths from "vite-tsconfig-paths";
+
+const config: StorybookConfig = {
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  addons: [
+    "@storybook/addon-onboarding",
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@chromatic-com/storybook",
+    "@storybook/addon-interactions",
+  ],
+  framework: {
+    name: "@storybook/react-vite",
+    options: {},
+  },
+  docs: {
+    autodocs: "tag",
+  },
+  viteFinal: async (config) => {
+    config.plugins?.push(
+      /** @see https://github.com/aleclarson/vite-tsconfig-paths */
+      tsconfigPaths({
+        projects: [path.resolve(path.dirname(__dirname), "tsconfig.json")],
+      })
+    );
+
+    return config;
+  },
+};
+export default config;
+```
+
+- add [tailwind to project](.storybook/preview.ts)
+
+```tsx
+import type { Preview } from "@storybook/react";
+import "../src/index.css";
+
+const preview: Preview = {
+  parameters: {
+    actions: { argTypesRegex: "^on[A-Z].*" },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
+  },
+};
+
+export default preview;
+```
+
+- create [Button story](src/components/Button/index.stories.tsx)
+
+```tsx
+import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from ".";
+
+const meta: Meta<typeof Button> = {
+  title: "Components/Button",
+  component: Button,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+};
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    children: "Click me",
+  },
+};
 ```

@@ -157,3 +157,11 @@ export const Default: Story = {
   },
 };
 ```
+
+### 6. Explaining how styling works, Adding Button styling and Adding the `ref` prop
+
+```bash
+$ yarn add clsx tailwind-merge class-variance-authority
+```
+
+- add [](src/components/Button/index.tsx)

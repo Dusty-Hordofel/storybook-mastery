@@ -323,3 +323,7 @@ export const Text: TextComponent = forwardRef(
 );
 
 ```
+
+### 9. Implement Input component
+
+- create [Input](src/components/Input/index.tsx) && [Input Strory](src/components/Input/index.stories.tsx)
